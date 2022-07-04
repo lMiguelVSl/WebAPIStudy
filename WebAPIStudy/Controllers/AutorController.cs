@@ -28,5 +28,22 @@ namespace WebAPIStudy.Controllers
             await _db.SaveChangesAsync(); //guardar en la DB
             return Ok(); //respuesta 200 
         }
+
+        [HttpPut]
+        public async Task<ActionResult> PutAutor(Autor autor, int id)
+        {
+            if (autor.Id != id)
+            {
+                return BadRequest("The Id doesn't match"); //error 400
+            }
+            var exist = await _db.Autores.AnyAsync(); //find 
+            if (!exist) //Doesn't exist 
+            {
+                return NotFound();
+            }
+            _db.Update(autor);
+            await _db.SaveChangesAsync();
+            return Ok(); //200
+        }
     }
 }
