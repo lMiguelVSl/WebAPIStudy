@@ -15,10 +15,17 @@ namespace WebAPIStudy.Controllers
             _db = db;
         }
 
-        [HttpGet]
+        
+        [HttpGet("list")]
         public async Task<ActionResult<List<Autor>>> GetAutores() //async ya que es con un servicio externo, retorno una lista de tipo autores
         {
             return await _db.Autores.ToListAsync(); 
+        }
+
+        [HttpGet("first")] //api/autores/first
+        public async Task<ActionResult<Autor>> FirstAutor()
+        {
+            return await _db.Autores.FirstOrDefaultAsync(); //ge the first autor that found 
         }
 
         [HttpPost]
