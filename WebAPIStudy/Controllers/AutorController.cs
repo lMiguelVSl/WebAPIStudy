@@ -25,7 +25,7 @@ namespace WebAPIStudy.Controllers
         [HttpGet("first")] //api/autores/first
         public async Task<ActionResult<Autor>> FirstAutor()
         {
-            return await _db.Autores.FirstOrDefaultAsync(); //ge the first autor that found 
+            return await _db.Autores.FirstOrDefaultAsync(); //get the first autor that found 
         }
 
         [HttpPost]
