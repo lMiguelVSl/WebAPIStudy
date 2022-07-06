@@ -33,7 +33,7 @@ namespace WebAPIStudy.Controllers
         {
             var ExistName = await _db.Autores.AnyAsync( x => x.Nombre == autor.Nombre ); //si existe el mismo nombre de autor 
             
-            if (ExistName)
+            if (ExistName) //controller validation 
             {
                 return BadRequest($"he name already exist");//400
             }

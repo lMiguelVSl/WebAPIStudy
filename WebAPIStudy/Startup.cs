@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using WebAPIStudy.Data;
+using WebAPIStudy.Services;
 
 namespace WebAPIStudy
 {
@@ -20,8 +21,13 @@ namespace WebAPIStudy
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MyConnection"))
-            );
+            options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
+
+            services.AddSingleton<IService>();
+
+            services.AddTransient<ServiceTransient>();
+            services.AddScoped<ServiceScoped>();
+            services.AddSingleton<ServiceSingleton>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
