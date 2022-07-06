@@ -25,9 +25,9 @@ namespace WebAPIStudy
 
             services.AddSingleton<IService>();
 
-            services.AddTransient<ServiceTransient>();
-            services.AddScoped<ServiceScoped>();
-            services.AddSingleton<ServiceSingleton>();
+            services.AddTransient<ServiceTransient>(); //one instance for each situation
+            services.AddScoped<ServiceScoped>(); //one instance for each Http peticion 
+            services.AddSingleton<ServiceSingleton>(); //one instance for everything 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
