@@ -31,6 +31,13 @@ namespace WebAPIStudy.Controllers
         [HttpPost]
         public async Task<ActionResult> PostAutor(Autor autor)
         {
+            var ExistName = await _db.Autores.AnyAsync( x => x.Nombre == autor.Nombre ); //si existe el mismo nombre de autor 
+            
+            if (ExistName)
+            {
+                return BadRequest($"he name already exist");//400
+            }
+
             _db.Add(autor); //agregar el autor recibido como parametro
             await _db.SaveChangesAsync(); //guardar en la DB
             return Ok(); //respuesta 200 
