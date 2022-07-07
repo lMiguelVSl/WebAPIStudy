@@ -23,7 +23,7 @@ namespace WebAPIStudy
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
 
-            services.AddSingleton<IService>();
+            services.AddSingleton<IService, ServiceA>();
 
             services.AddTransient<ServiceTransient>(); //one instance for each situation
             services.AddScoped<ServiceScoped>(); //one instance for each Http peticion 
