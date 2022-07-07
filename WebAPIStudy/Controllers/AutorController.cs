@@ -31,11 +31,14 @@ namespace WebAPIStudy.Controllers
         [HttpGet("GUID")]
         public ActionResult ObtenerGuids()
         {
-            return Ok(new //returning the guid from each service fron the Iservice class 
+            return Ok(new 
             {
-                AutorControllerTransient = serviceTransient.Guid,
+                AutorControllerTransient = serviceTransient.Guid, //returning the guid from each service fron the class by the controller
+                ServiceA_Transient = service.ObtenerTransient(), //getting the value from the service 
                 AutorControllerScoped = serviceScoped.Guid,
-                AutorControllerSingleton = serviceSingleton.Guid
+                ServiceA_Scoped = service.ObtenerScoped(),
+                AutorControllerSingleton = serviceSingleton.Guid,
+                ServiceA_Singleton = service.ObtenerSingleton()
             });
         }
         [HttpGet("list")]
