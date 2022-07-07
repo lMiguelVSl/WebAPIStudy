@@ -1,6 +1,6 @@
 ﻿namespace WebAPIStudy.Services
 {
-    interface IService
+    public interface IService
     {
     }
 

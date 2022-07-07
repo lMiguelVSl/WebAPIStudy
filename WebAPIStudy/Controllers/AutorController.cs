@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPIStudy.Data;
 using WebAPIStudy.Model;
+using WebAPIStudy.Services;
 
 namespace WebAPIStudy.Controllers
 {
@@ -9,13 +10,29 @@ namespace WebAPIStudy.Controllers
     [Route("api/autores")]
     public class AutorController : Controller
     {
-        private ApplicationDbContext _db;
-        public AutorController(ApplicationDbContext db)
+
+        private readonly ApplicationDbContext _db;
+        private readonly IService service;
+        private readonly ServiceTransient serviceTransient;
+        private readonly ServiceScoped serviceScoped;
+        private readonly ServiceSingleton serviceSingleton;
+
+        public AutorController(ApplicationDbContext db, IService service,
+            ServiceTransient serviceTransient, ServiceScoped serviceScoped,
+            ServiceSingleton serviceSingleton) //injecting the services
         {
             _db = db;
+            this.service = service;
+            this.serviceTransient = serviceTransient;
+            this.serviceScoped = serviceScoped;
+            this.serviceSingleton = serviceSingleton;
         }
 
-        
+        [HttpGet("GUID")]
+        public ActionResult ObtenerGuids()
+        {
+            return null;
+        }
         [HttpGet("list")]
         public async Task<ActionResult<List<Autor>>> GetAutores() //async ya que es con un servicio externo, retorno una lista de tipo autores
         {
