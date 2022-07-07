@@ -31,7 +31,12 @@ namespace WebAPIStudy.Controllers
         [HttpGet("GUID")]
         public ActionResult ObtenerGuids()
         {
-            return null;
+            return Ok(new //returning the guid from each service fron the Iservice class 
+            {
+                AutorControllerTransient = serviceTransient.Guid,
+                AutorControllerScoped = serviceScoped.Guid,
+                AutorControllerSingleton = serviceSingleton.Guid
+            });
         }
         [HttpGet("list")]
         public async Task<ActionResult<List<Autor>>> GetAutores() //async ya que es con un servicio externo, retorno una lista de tipo autores
